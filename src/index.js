@@ -64,6 +64,7 @@ class App extends Component {
           </div>
           <button>Submit</button>
         </form>
+        This is a updated version
         {this.state.msg}
       </div>
     );
