@@ -20,9 +20,16 @@ class App extends Component {
     manager: "",
     balance: "",
     value: "",
-    msg: ""
+    msg: "",
+    errmsg: ""
   };
-
+  winsubmit = async event => {
+    event.preventDefault();
+    const acc = await web3.eth.getAccounts();
+    console.log("inside win button");
+    if (acc[0] != this.state.manager)
+      this.setState({ errmsg: "sorry you are not the manager" });
+  };
   onsubmit = async event => {
     event.preventDefault();
     const acc = await web3.eth.getAccounts();
@@ -66,6 +73,9 @@ class App extends Component {
         </form>
         This is a updated version
         {this.state.msg}
+        <hr />
+        <button onClick={this.winsubmit}>Pick</button>
+        {this.state.errmsg}
       </div>
     );
   }
